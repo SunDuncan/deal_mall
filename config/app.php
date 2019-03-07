@@ -19,9 +19,9 @@ return [
     // 应用地址
     'app_host'               => '',
     // 应用调试模式
-    'app_debug'              => false,
+    'app_debug'              => true,
     // 应用Trace
-    'app_trace'              => false,
+    'app_trace'              => true,
     // 是否支持多模块
     'app_multi_module'       => true,
     // 入口自动绑定模块
@@ -90,8 +90,8 @@ return [
     'http_agent_ip'          => 'X-REAL-IP',
     // URL伪静态后缀
     'url_html_suffix'        => 'html',
-    // URL普通方式参数 用于自动生成
-    'url_common_param'       => false,
+    // URL普通方式参数 用于自动生成d
+    'url_common_param'       => true,
     // URL参数方式 0 按名称成对解析 1 按顺序解析
     'url_param_type'         => 0,
     // 是否开启路由延迟解析
@@ -142,5 +142,6 @@ return [
     'show_error_msg'         => false,
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
+    'url_route_on' => true
 
 ];

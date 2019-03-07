@@ -1,0 +1,40 @@
+<div class="search">
+  <a href="/"><img src="__STATIC__/index/image/logo.png" /></a>
+</div>
+
+<div class="nav-bar-header">
+  <div class="nav-inner">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <span class="item">全部分类</span>
+        <div class="left-menu">
+          {volist name="categories" id="vo"}
+          <div class="level-item">
+            <div class="first-level">
+              <dl>
+                <dt class="title"><a href="{:url('lists/index', ['id' => $vo.id, 'city_id'=>$city_id])}" target="_top">{$vo.name}</a></dt>
+                <dd><a href="{:url('lists/index', ['id' => $vo.se_categories[0]->id,'city_id'=>$city_id])}" target="_top" class="">{$vo.se_categories[0]->name}</a></dd>
+                <dd><a href="{:url('lists/index', ['id' => $vo.se_categories[1]->id,'city_id'=>$city_id])}" target="_top" class="">{$vo.se_categories[1]->name}</a></dd>
+              </dl>
+            </div>
+            <div class="second-level">
+              <div class="section">
+                <div class="section-item clearfix no-top-border">
+                  <h3>其它分类</h3>
+                  <ul>
+                    {volist name="vo.se_categories" id="v1" offset="2" length="20"}
+                    <li><a href="{:url('lists/index', ['id' => $v1.id,'city_id'=>$city_id])}">{$v1.name}</a></li>
+                    {/volist}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/volist}
+      </li>
+      <li class="nav-item"><a href="/" class="item first active">首页</a></li>
+      <li class="nav-item"><a class="item">团购</a></li>
+      <li class="nav-item"><a class="item">商户</a></li>
+    </ul>
+  </div>
+</div>
