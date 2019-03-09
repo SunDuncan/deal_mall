@@ -88,4 +88,18 @@ class Deal extends Base {
     public function detail() {
         return $this->fetch();
     }
+
+    public function updateStatus() {
+        $data = input('get.');
+        if (empty($data)) {
+            $this->error("未收到修改的信息");
+        }
+
+        $res = $this->bis_location_model->updateBisLocation($data);
+        if (!$res) {
+            $this->error("修改失败");
+        }
+
+        $this->success("操作成功");
+    }
  }
