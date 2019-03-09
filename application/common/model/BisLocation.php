@@ -71,8 +71,7 @@ class BisLocation extends Model {
 
         $data['parent_id'] = $id;
         $data['is_main'] = 0;
-        $data['status'] = 1;
-        return $this->where($data)->select();
+        return $this->where($data)->where("status <> -1")->select();
     }
 
     /**
