@@ -95,7 +95,7 @@ class Deal extends Base {
             $this->error("未收到修改的信息");
         }
 
-        $res = $this->bis_location_model->updateBisLocation($data);
+        $res = $this->deal_model->updateDeal($data);
         if (!$res) {
             $this->error("修改失败");
         }

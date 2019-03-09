@@ -110,4 +110,14 @@ class Deal extends Model{
 
         return $this->where($data)->order($order)->paginate();
     }
+
+    public function updateDeal($data) {
+        if(is_null($data)) {
+            return false;
+        }
+
+        $data['update_time'] = time();
+        $res = $this->where('id', $data['id'])->update($data);
+        return $res;
+    }
 }
