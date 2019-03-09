@@ -60,7 +60,6 @@ class Lists extends Base {
         /**
          * 获取商品的信息
          */
-        exit;
         $deals = $this->deal_model->getDealByCondition($data, $sales);
         $page = $deals->appends($this->request->param())->render();
         $this->assign("deals", $deals);
