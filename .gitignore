@@ -2,9 +2,11 @@
 /.vscode
 /vendor
 *.log
+thinkphp
 .env
 .DS_Store
 *.jpg
 *.png
 *.gif
 */upload/*
+./runtime/*
