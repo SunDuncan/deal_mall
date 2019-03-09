@@ -38,6 +38,12 @@ class Deal extends Base {
     }
 
     public function index() {
+        /**
+         * 获取该门店的所有商品
+         */
+        $data['bis_id'] = $this->getUserInfo()->bis_id;
+        $info = $this->deal_model->getAllDeals($data);
+        $this->assign("info", $info);
         return $this->fetch();
     }
 

@@ -94,4 +94,20 @@ class Deal extends Model{
     public function getSeCategories() {
         return $this->field('se_category_id')->select();
     }
+
+    /**
+     * 查询所有的团购商品
+     */
+    public function getAllDeals($data){
+        if (empty($data)){
+            return;
+        }
+
+        $order = [
+            'listorder' => 'desc',
+            'id' => 'desc'
+        ];
+
+        return $this->where($data)->order($order)->paginate();
+    }
 }
