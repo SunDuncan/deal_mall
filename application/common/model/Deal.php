@@ -78,7 +78,7 @@ class Deal extends Model{
         }
 
         if (!empty($data['category_id'])) {
-            $datas[] = ['category_id' ,' = ', $data['category_id']];
+            $datas[] = ['category_id' ,'=', $data['category_id']];
         }
 
         if (!empty($data['city_id'])) {
