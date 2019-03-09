@@ -84,4 +84,8 @@ class Deal extends Base {
         $se_bis = $this->location_model->getLocationByParentId($parent_id);
         return $se_bis;
     }
+
+    public function detail() {
+        return $this->fetch();
+    }
  }
