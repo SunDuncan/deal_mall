@@ -86,6 +86,41 @@ class Deal extends Base {
     }
 
     public function detail() {
+        $id = input('get.id');
+        /**
+         * 获取团购商品
+         */
+        $deal_info = model('deal')->find($id);
+        /**
+         * 城市
+         */
+        $city_id = $deal_info['city_id'];
+        $city_info = model('city')->find($city_id);
+        $parent_city_info = model('city')->find($city_info['parent_id']);
+        /**
+         * 分类
+         */
+        $category_id = $deal_info['category_id'];
+        $category_info = model('category')->find($category_id);
+        $se_category_info = [];
+        foreach (explode(",", $deal_info['se_category_id']) as $key){
+            array_push( $se_category_info,model('category')->find($key));
+        }
+
+        /**
+         * 门店
+         */
+        $se_bis_info = [];
+        foreach (explode(",", $deal_info['location_ids']) as $key){
+            array_push( $se_bis_info,model('bislocation')->find($key));
+        }
+
+        $this->assign("se_bis_info", $se_bis_info);
+        $this->assign("category_info", $category_info);
+        $this->assign("se_category_info", $se_category_info);
+        $this->assign("city_info", $city_info);
+        $this->assign("parent_city_info", $parent_city_info);
+        $this->assign("deal", $deal_info);
         return $this->fetch();
     }
 
