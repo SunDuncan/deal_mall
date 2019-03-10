@@ -26,7 +26,7 @@
           <h3>热门城市</h3>
           <ul class="son">
             {volist name="hot_cities" id="vo"}
-            <li><a href="{:url('', ['name' => $vo.name, 'city_id' => $vo.id])}">{$vo.name}</a></li>
+            <li><a href="{:url('index/index', ['name' => $vo.name, 'city_id' => $vo.id])}">{$vo.name}</a></li>
             {/volist}
           </ul>
         </div>

@@ -104,6 +104,7 @@ class BisLocation extends Model {
             ['status', '=', 1]
         ];
 
-        return $this->where($data)->select();
+        $result = $this->where($data)->select();
+        return $result;
     }
 }

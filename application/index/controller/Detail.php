@@ -31,10 +31,10 @@ class Detail extends Base {
         $category = $this->category_model->getCategoryById($deal_info->category_id);
         $location_ids = $this->location_model->getLocationNames(explode(',', $deal_info->location_ids));
         $flag = 0;//判断是否开始
+        $time_data = '';
         if ($deal_info->start_time > time()) {
             $flag = 1;
             $dtime = $deal_info->start_time-time();
-            $time_data = '';
             $d = floor($dtime / (3600 *  24));
             if($d) {
                 $time_data .= $d . "天 ";
@@ -47,6 +47,10 @@ class Detail extends Base {
             if ($m) {
                 $time_data .= $m . "分 ";
             }
+        }
+
+        if (empty($location_ids)) {
+            $this->error("该商品已经下架，分店已经被撤出");
         }
         $this->assign("time_data", $time_data);
         $this->assign("overplus", ($deal_info->total_count - $deal_info->buy_count));
