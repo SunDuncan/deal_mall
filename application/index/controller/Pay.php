@@ -44,8 +44,14 @@ class Pay extends Base {
         $input->SetTradeType("NATIVE");
         $input->SetProductId("123456789");
         $result = $notify->GetPayUrl($input);
+        dump($result);
         $url2 = $result["code_url"];
-        $this->assign("url", $url2);
+        if (empty($url2)) {
+            $url =  '';
+        } else {
+            $url = $url2;
+        }
+        $this->assign("url", $url);
         $this->assign("order", $order_info);
         $this->assign("deal", $deal);
         return $this->fetch();
