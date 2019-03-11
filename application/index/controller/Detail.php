@@ -49,8 +49,8 @@ class Detail extends Base {
             }
         }
 
-        if (empty($location_ids)) {
-            $this->error("该商品已经下架，分店已经被撤出");
+        if (empty($location_ids) || count($location_ids) == 0) {
+            $this->error("该商品已经下架，分店已经被撤出", url("index/index"));
         }
         $this->assign("time_data", $time_data);
         $this->assign("overplus", ($deal_info->total_count - $deal_info->buy_count));
