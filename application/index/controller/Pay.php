@@ -31,7 +31,7 @@ class Pay extends Base {
         $deal = model('Deal')->find($order_info->deal_id);
 
         //生成二维码
-        dump($order_info);
+
         $notify = new NativePay();
         $input = new WxPayUnifiedOrder();
         $input->setBody($deal->name);
