@@ -47,7 +47,7 @@ $input->SetTotal_fee("1");
 $input->SetTime_start(date("YmdHis"));
 $input->SetTime_expire(date("YmdHis", time() + 600));
 $input->SetGoods_tag("test");
-$input->SetNotify_url("/index.php/index/weixinpay/notify");
+$input->SetNotify_url("/index/weixinpay/notify");
 $input->SetTrade_type("NATIVE");
 $input->SetProduct_id("123456789");
 
