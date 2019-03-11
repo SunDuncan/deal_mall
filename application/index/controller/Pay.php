@@ -33,9 +33,9 @@ class Pay extends Base {
         //生成二维码
         $notify = new NativePay();
         $input = new WxPayUnifiedOrder();
-        $input->setBody("支付0.01元");
-        $input->setAttach("支付0.01元");
-        $input->setOutTradeNo(WxPayConfig::MCHID.date("YmdHis"));
+        $input->setBody($deal->name);
+        $input->setAttach($deal->name);
+        $input->setOutTradeNo($deal->out_trade_no);
         $input->SetTotalFee("1");
         $input->SetTimeStart(date("YmdHis"));
         $input->SetTimeExpire(date("YmdHis", time() + 600));
