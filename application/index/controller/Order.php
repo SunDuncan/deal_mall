@@ -44,7 +44,7 @@ class Order extends Base {
         }
 
         $count = input("get.deal_count", 0, 'intval');
-        $price = input("get.deal_price", 0, 'intval');
+        $price = input("get.total_price", 0, 'intval');
         $deal = model('Deal')->find($id);
         if (!$deal || $deal->status != 1){
             $this->error("商品不存在");
