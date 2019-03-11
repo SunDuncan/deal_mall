@@ -1,24 +1,13 @@
 <?php
-/**
-*
-* example目录下为简单的支付样例，仅能用于搭建快速体验微信支付使用
-* 样例的作用仅限于指导如何使用sdk，在安全上面仅做了简单处理， 复制使用样例代码时请慎重
-* 请勿直接直接使用样例对外提供服务
-* 
-**/
+ini_set('date.timezone','Asia/Shanghai');
+//error_reporting(E_ERROR);
 
 require_once "../lib/WxPay.Api.php";
 require_once "WxPay.NativePay.php";
 require_once 'log.php';
 
-//初始化日志
-$logHandler= new CLogFileHandler("../logs/".date('Y-m-d').'.log');
-$log = Log::Init($logHandler, 15);
-
 //模式一
-//不再提供模式一支付方式
 /**
-
  * 流程：
  * 1、组装包含支付信息的url，生成二维码
  * 2、用户扫描二维码，进行支付
@@ -27,8 +16,7 @@ $log = Log::Init($logHandler, 15);
  * 5、支付完成之后，微信服务器会通知支付成功
  * 6、在支付成功通知中需要查单确认是否真正支付成功（见：notify.php）
  */
-
-$notify = new NativePay();
+git$notify = new NativePay();
 $url1 = $notify->GetPrePayUrl("123456789");
 
 //模式二
@@ -42,15 +30,14 @@ $url1 = $notify->GetPrePayUrl("123456789");
 $input = new WxPayUnifiedOrder();
 $input->SetBody("test");
 $input->SetAttach("test");
-$input->SetOut_trade_no("sdkphp123456789".date("YmdHis"));
+$input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
 $input->SetTotal_fee("1");
 $input->SetTime_start(date("YmdHis"));
 $input->SetTime_expire(date("YmdHis", time() + 600));
 $input->SetGoods_tag("test");
-$input->SetNotify_url("http://o2o.ducnan.cn/index/weixinpay/notify.php");
+$input->SetNotify_url("http://paysdk.weixin.qq.com/example/notify.php");
 $input->SetTrade_type("NATIVE");
 $input->SetProduct_id("123456789");
-
 $result = $notify->GetPayUrl($input);
 $url2 = $result["code_url"];
 ?>
@@ -63,11 +50,10 @@ $url2 = $result["code_url"];
 </head>
 <body>
 	<div style="margin-left: 10px;color:#556B2F;font-size:30px;font-weight: bolder;">扫描支付模式一</div><br/>
-	<img alt="模式一扫码支付" src="qrcode.php?data=<?php echo urlencode($url1);?>" style="width:150px;height:150px;"/>
+	<img alt="模式一扫码支付" src="http://paysdk.weixin.qq.com/example/qrcode.php?data=<?php echo urlencode($url1);?>" style="width:150px;height:150px;"/>
 	<br/><br/><br/>
 	<div style="margin-left: 10px;color:#556B2F;font-size:30px;font-weight: bolder;">扫描支付模式二</div><br/>
-	<img alt="模式二扫码支付" src="qrcode.php?data=<?php echo urlencode($url2);?>" style="width:150px;height:150px;"/>
-	<div style="color:#ff0000"><b>微信支付样例程序，仅做参考</b></div>
+	<img alt="模式二扫码支付" src="http://paysdk.weixin.qq.com/example/qrcode.php?data=<?php echo urlencode($url2);?>" style="width:150px;height:150px;"/>
 	
 </body>
 </html>

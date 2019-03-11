@@ -10,26 +10,47 @@ http://paysdk.weixin.qq.com/
 ⑥、搭建完成
 
 SDK目录结构
+|-- cert
+|   |-- apiclient_cert.pem
+|   `-- apiclient_key.pem
+|-- index.php
 |-- lib
+|   |-- WxPay.Api.php
+|   |-- WxPay.Config.php
+|   |-- WxPay.Data.php
+|   |-- WxPay.Exception.php
+|   `-- WxPay.Notify.php
 |-- logs
+|   |-- 2015-03-06.log
+|   `-- 2015-03-11.log
 `-- example
-
+    |-- WxPay.JsApiPay.php
+    |-- WxPay.MicroPay.php
+    |-- WxPay.NativePay.php
+	|-- download.php
+	|-- micropay.php
+	|-- native.php
+	|-- native_notify.php
+	|-- notify.php
+	|-- orderquery.php
+	|-- qrcode.php
+	|-- refund.php
+	|-- refundquery.php
+	|-- jsapi.php
+    |-- log.php
+    `-- phpqrcode
 
 目录功能简介
 lib
 API接口封装代码
 WxPay.Api.php 包括所有微信支付API接口的封装
-WxPay.Config.Interface.php  商户配置 , 业务需要从这里继承（请注意保管自己的密钥/证书等）
+WxPay.Config.php  商户配置
 WxPay.Data.php   输入参数封装
 WxPay.Exception.php  异常类
 WxPay.Notify.php    回调通知基类
 
 cert
 证书存放路径，证书可以登录商户平台https://pay.weixin.qq.com/index.php/account/api_cert下载
-注意:
-1.证书文件不能放在web服务器虚拟目录，应放在有访问权限控制的目录中，防止被他人下载；
-2.建议将证书文件名改为复杂且不容易猜测的文件名；
-3.商户服务器要做好病毒和木马防护工作，不被非法侵入者窃取证书文件。
 
 example
 样例程序代码路径
