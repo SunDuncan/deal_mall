@@ -61,7 +61,7 @@ class Order extends Base {
             'username' => $this->account->username,
             'deal_id' => $id,
             'deal_count' => $count,
-            'deal_price' => $price,
+            'total_price' => $price,
             'referer' => 'HTTP_REFERER'
         ];
 

@@ -14,7 +14,7 @@ class Order extends Model {
     public function add($data) {
         $data['status'] = 1;
 //        $data['create_time'] = time();
-        $result = $this->save($data);
-        return $result;
+        $this->save($data);
+        return $this->id;
     }
 }
