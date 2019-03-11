@@ -47,7 +47,7 @@ $input->SetTotal_fee("1");
 $input->SetTime_start(date("YmdHis"));
 $input->SetTime_expire(date("YmdHis", time() + 600));
 $input->SetGoods_tag("test");
-$input->SetNotify_url("/index/weixinpay/notify");
+$input->SetNotify_url("http://paysdk.weixin.qq.com/notify.php");
 $input->SetTrade_type("NATIVE");
 $input->SetProduct_id("123456789");
 
@@ -66,8 +66,8 @@ $url2 = $result["code_url"];
 	<img alt="模式一扫码支付" src="qrcode.php?data=<?php echo urlencode($url1);?>" style="width:150px;height:150px;"/>
 	<br/><br/><br/>
 	<div style="margin-left: 10px;color:#556B2F;font-size:30px;font-weight: bolder;">扫描支付模式二</div><br/>
-    <?php echo $url2?>
 	<img alt="模式二扫码支付" src="qrcode.php?data=<?php echo urlencode($url2);?>" style="width:150px;height:150px;"/>
 	<div style="color:#ff0000"><b>微信支付样例程序，仅做参考</b></div>
+	
 </body>
 </html>
