@@ -32,14 +32,14 @@
                         <ul class="order-list">
                             <li>
                                 <span class="order-list-no">订单:</span>
-                                <span class="order-list-name"></span><span class="order-list-number">1份</span>
+                                <span class="order-list-name">{$deal.name}</span><span class="order-list-number">{$order.deal_count}份</span>
                             </li>
                         </ul>
                     </td>
                     <td class="fl_right">
                         <dl>
                             <dt>应付金额：</dt>
-                            <dd class="money"><span>1元</span></dd>
+                            <dd class="money"><span>{$order.toatl_price}元</span></dd>
                         </dl>
                     </td>
                 </tr>
@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <div align="center"><h1 class="title">使用微信扫码支付方式</h1><img src="/weixin/example/qrcode.php?data=" alt="微信扫码支付" style="width:300px;height:300px;"></div>
+    <div align="center"><h1 class="title">使用微信扫码支付方式</h1><img src="/weixin/example/qrcode.php?data={$url}" alt="微信扫码支付" style="width:300px;height:300px;"></div>
 
 </div>
     <script>

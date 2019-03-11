@@ -59,6 +59,9 @@ class User extends Controller {
                 $this->error("用户名已经存在");
             }
 
+            if ($res->email == $data['email']) {
+                $this->error("该邮箱已经存在");
+            }
             $post_data['username'] = $data['username'];
             $post_data['code'] = mt_rand(100, 10000);
             $post_data['password'] = md5($data['password'] . $post_data['code']);
