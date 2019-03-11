@@ -11,6 +11,6 @@ use think\Controller;
 class Weixinpay extends Controller{
     public function notify(){
         $weixinData = file_get_contents("php://input");
-        file_put_contents("/tmp/test/2.txt", $weixinData, FILE_APPEND);
+        file_put_contents("/tmp/test/2.txt", "php", FILE_APPEND);
     }
 }
