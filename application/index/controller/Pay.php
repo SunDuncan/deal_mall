@@ -35,7 +35,7 @@ class Pay extends Base {
         $input = new WxPayUnifiedOrder();
         $input->setBody($deal->name);
         $input->setAttach($deal->name);
-        $input->setOutTradeNo($deal->out_trade_no);
+        $input->setOutTradeNo($order_info->out_trade_no);
         $input->SetTotalFee("1");
         $input->SetTimeStart(date("YmdHis"));
         $input->SetTimeExpire(date("YmdHis", time() + 600));
