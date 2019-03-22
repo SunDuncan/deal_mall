@@ -30,6 +30,8 @@ class Feature extends Controller {
             $type = $type;
         }
         $feature_data = $this->feature_model->getPicByType($type);
+        $page = $feature_data->render();
+        $this->assign('page', $page);
         $this->assign("type", $type);
         $this->assign('feature', $feature_data);
         return $this->fetch();
@@ -50,5 +52,16 @@ class Feature extends Controller {
         }
 
         $this->success("保存成功");
+    }
+
+    public function updateStatus() {
+        $data = input("get.");
+        $res = $this->feature_model->updateFeatureById($data);
+
+        if (!$res) {
+            $this->error("操作失败");
+        }
+
+        $this->success("操作成功");
     }
 }

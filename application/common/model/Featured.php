@@ -27,10 +27,21 @@ class Featured extends Model{
     public function getPicByType($type=0) {
         $data['type'] = $type;
         $order = [
+            'status' => 'desc',
             'listorder' => 'desc',
             'id'=> 'desc'
         ];
 
-        return $this->where($data)->order($order)->select();
+        return $this->where($data)->order($order)->paginate();
+    }
+
+    public function updateFeatureById($data) {
+        if(is_null($data)) {
+            return false;
+        }
+
+        $data['update_time'] = time();
+        $res = $this->where('id', $data['id'])->update($data);
+        return $res;
     }
 }

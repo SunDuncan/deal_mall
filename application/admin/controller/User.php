@@ -17,7 +17,20 @@ class User extends Controller {
 
     public function index() {
         $user_info = $this->user_model->getUsers();
+        $page = $user_info->render();
+        $this->assign('page', $page);
         $this->assign('users', $user_info);
         return $this->fetch();
+    }
+
+    public function updateStatus() {
+        $data = input("get.");
+        $res = $this->user_model->updateUserById($data);
+
+        if (!$res) {
+            $this->error("操作失败");
+        }
+
+        $this->success("操作成功");
     }
 }

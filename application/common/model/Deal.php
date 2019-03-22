@@ -12,12 +12,12 @@ class Deal extends Model{
     protected $field = true;
 
     public function getDealInfo($data) {
-        $data['status'] = 1;
         $order = [
+            'status' => 'desc',
             'listorder' => 'desc',
-            'id'    => 'desc'
+            'id'    => 'desc',
         ];
-        return $this->where($data)->order($order)->select();
+        return $this->where($data)->order($order)->paginate();
     }
 
     public function addDeal($data) {
@@ -48,7 +48,7 @@ class Deal extends Model{
 
         $order = [
             'listorder' => 'desc',
-            'id' => 'desc'
+            'id' => 'desc',
         ];
 
         $result = $this->where($data)->order($order)->limit($limit)->select();
@@ -123,5 +123,15 @@ class Deal extends Model{
 
     public function updateBuyCountById($id, $buyCount) {
         return $this->where(['id' => $id])->setInc('buy_count', $buyCount);
+    }
+
+    public function updateDealById($data) {
+        if(is_null($data)) {
+            return false;
+        }
+
+        $data['update_time'] = time();
+        $res = $this->where('id', $data['id'])->update($data);
+        return $res;
     }
 }

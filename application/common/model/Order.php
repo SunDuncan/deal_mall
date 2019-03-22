@@ -36,7 +36,12 @@ class Order extends Model {
     }
 
 
-    public function getOrders() {
-        return $this->select();
+    public function getOrders($data) {
+        $order = [
+            'id' => 'desc'
+        ];
+
+        return $this->order($order)->where($data)->paginate();
+
     }
 }

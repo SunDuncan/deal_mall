@@ -66,6 +66,7 @@ class Deal extends Controller {
         }
 
         $deal_data = $this->deal_model->getDealInfo($fliter_data);
+        $this->assign('page', $deal_data->render());
         $this->assign("category_index", $categories_index);
         $this->assign("cities_index", $categories_index);
         $this->assign('city_id', empty($get_data['city_id'])?'': $get_data['city_id']);
@@ -79,10 +80,17 @@ class Deal extends Controller {
         return $this->fetch();
     }
 
-    /**
-     * 查询所需要的数据
-     */
-    public function getDealInfo($data) {
 
+
+    public function updateStatus()
+    {
+        $data = input("get.");
+        $res = $this->deal_model->updateDealById($data);
+
+        if (!$res) {
+            $this->error("操作失败");
+        }
+
+        $this->success("操作成功");
     }
 }

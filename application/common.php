@@ -108,3 +108,37 @@ function countLocation($ids){
         return 1;
     }
 }
+
+function pay_status($type) {
+    if ($type == 1) {
+        $str = "<span class='label label-success radius'>已支付</span>";
+    } else{
+        $str = "<span class='label label-danger radius'>待支付</span>";
+    }
+
+    echo $str;
+}
+
+/**
+ * id 转化为商品名称
+ */
+function get_deal_name($id){
+    $deal_name = model('Deal')->find($id);
+    echo $deal_name->name;
+}
+
+/**
+ * @param $id
+ */
+function get_category_name($id){
+    $deal_name = model('Category')->find($id);
+    echo $deal_name->name;
+}
+
+/**
+ * @param $id
+ */
+function get_city_name($id){
+    $deal_name = model('City')->find($id);
+    echo $deal_name->name;
+}

@@ -46,11 +46,21 @@ class User extends Model{
      */
     public function getUsers() {
         $order = [
+            'status' => 'desc',
             'listorder'=> 'asc',
             'id'=> 'asc'
         ];
 
-        return $this->field("id,username,email,listorder,status,create_time,update_time,last_login_time")->order($order)->select();
+        return $this->field("id,mobile,username,email,listorder,status,create_time,update_time,last_login_time")->order($order)->select();
     }
 
+    public function updateUserById($data) {
+        if(is_null($data)) {
+            return false;
+        }
+
+        $data['update_time'] = time();
+        $res = $this->where('id', $data['id'])->update($data);
+        return $res;
+    }
 }
