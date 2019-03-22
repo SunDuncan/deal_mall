@@ -25,7 +25,13 @@ class Feature extends Controller {
         return $this->fetch();
     }
 
-    public function index() {
+    public function index($type = 0) {
+        if ($type != 0) {
+            $type = $type;
+        }
+        $feature_data = $this->feature_model->getPicByType($type);
+        $this->assign("type", $type);
+        $this->assign('feature', $feature_data);
         return $this->fetch();
     }
 

@@ -26,7 +26,6 @@ class Featured extends Model{
      */
     public function getPicByType($type=0) {
         $data['type'] = $type;
-        $data['status'] = 1;
         $order = [
             'listorder' => 'desc',
             'id'=> 'desc'

@@ -41,5 +41,16 @@ class User extends Model{
         return $this->update($data);
     }
 
+    /**
+     * 查询数据库的用户
+     */
+    public function getUsers() {
+        $order = [
+            'listorder'=> 'asc',
+            'id'=> 'asc'
+        ];
+
+        return $this->field("id,username,email,listorder,status,create_time,update_time,last_login_time")->order($order)->select();
+    }
 
 }

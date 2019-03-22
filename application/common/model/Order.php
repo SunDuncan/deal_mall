@@ -34,4 +34,9 @@ class Order extends Model {
 
         return $this->allowField(true)->save($data, ['out_trade_no' => $out_trade_to]);
     }
+
+
+    public function getOrders() {
+        return $this->select();
+    }
 }

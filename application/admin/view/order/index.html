@@ -8,7 +8,7 @@
 		<input type="text" onfocus="WdatePicker()" id="datemin" class="input-text Wdate" style="width:120px;">
 		-
 		<input type="text" onfocus="WdatePicker()" id="datemax" class="input-text Wdate" style="width:120px;">
-		<input type="text" class="input-text" style="width:250px" placeholder="输入会员名称、电话、邮箱" id="" name="">
+		<input type="text" class="input-text" style="width:250px" placeholder="输入会员名称" id="name" name="name">
 		<button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
 	</div>
 	<!--<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span> <span class="r">共有数据：<strong>88</strong> 条</span> </div>-->
@@ -33,16 +33,14 @@
 			<tr class="text-c">
 				<td><input type="checkbox" value="1" name=""></td>
 				<td>{$vo->id}</td>
-				<td>{$vo->order_sn}</td>
+				<td>{$vo->out_trade_no}</td>
 				<td>{$vo->deal_id}</td>
 				<td>{$vo->user_id}</td>
-				<td>{$vo->user_name}</td>
+				<td>{$vo->username}</td>
 				<td>{$vo->deal_count}</td>
 				<td>{$vo->total_price}</td>
-				<td>{$vo.create_time|date="y-m-d h:i",###}</td>
-				<td class="td-status"><a>{$vo.pay_status|pay_status}</a></td>
-
-				
+				<td>{$vo.create_time|date="y-m-d h:i"}</td>
+				<td class="td-status"><a>{$vo.pay_status}</a></td>
 			</tr>
 			{/volist}
 		</tbody>

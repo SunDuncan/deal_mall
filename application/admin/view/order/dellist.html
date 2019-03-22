@@ -39,10 +39,8 @@
 				<td>{$vo->user_name}</td>
 				<td>{$vo->deal_count}</td>
 				<td>{$vo->total_price}</td>
-				<td>{$vo.create_time|date="y-m-d h:i",###}</td>
+				<td>{$vo.create_time|date="y-m-d h:i"}</td>
 				<td class="td-status"><span class="label label-danger radius">删除</span></td>
-
-				
 			</tr>
 			{/volist}
 		</tbody>
