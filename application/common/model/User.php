@@ -51,7 +51,7 @@ class User extends Model{
             'id'=> 'asc'
         ];
 
-        return $this->field("id,mobile,username,email,listorder,status,create_time,update_time,last_login_time")->order($order)->select();
+        return $this->field("id,mobile,username,email,listorder,status,create_time,update_time,last_login_time")->order($order)->paginate();
     }
 
     public function updateUserById($data) {
