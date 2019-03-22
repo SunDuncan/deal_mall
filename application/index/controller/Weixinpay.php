@@ -12,6 +12,8 @@ use wxpay\database\WxPayResults;
 class Weixinpay extends Controller{
     public function notify(){
         $weixinData = file_get_contents("php://input");
+        file_put_contents("/tmp/test/2.txt", $weixinData, FILE_APPEND);
+
         try {
             $resultObj = new WxPayResults();
             $weixinData = $resultObj->Init($weixinData);
