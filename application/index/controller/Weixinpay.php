@@ -8,10 +8,42 @@
 namespace app\index\controller;
 use think\Controller;
 use wxpay\database\WxPayUnifiedOrder;
+use wxpay\database\WxPayResults;
 class Weixinpay extends Controller{
     public function notify(){
         $weixinData = file_get_contents("php://input");
         file_put_contents("/tmp/test/2.txt", $weixinData, FILE_APPEND);
+
+        try {
+            $resultObj = new WxPayResults();
+            $weixinData = $resultObj->Init($weixinData);
+
+        }catch(\Exception $e) {
+            $resultObj->setData('return_code', 'FAIL');
+            $resultObj->setData('return_msg', $e->getMessage());
+            return $resultObj->toXml();
+        }
+        if ($weixinData['return_code'] === 'FAIL' || $weixinData['result_code'] != 'SUCCESS') {
+            $resultObj->setData('return_code', 'FAIL');
+            $resultObj->setData('return_msg', "错误");
+            return $resultObj->toXml();
+        }
+
+        $outTradeTo = $weixinData['out_trade_to'];
+        $order = model('Order')->get(['out_trade_to' => $outTradeTo]);
+        if (!$order || $order->pay_status  == 1) {
+            $resultObj->setData('return_code', 'SUCCESS');
+            $resultObj->setData('return_msg', "OK");
+            return $resultObj->toXml();
+        }
+
+        try {
+            $order_res = model('Order')->updateOrderByOutTradeNo($outTradeTo, $weixinData);
+
+        }catch (\Exception $e){
+
+        }
+
     }
 
     public function wxpayQCode() {
