@@ -5,11 +5,12 @@
  * Date: 2019/3/22
  * Time: 18:59
  */
-namespace api\controller;
+namespace app\api\controller;
 use think\Controller;
 class Order extends Controller{
     private $obj = null;
     public function initialize() {
+        parent::initialize();
         $this->obj = model('Order');
     }
 
