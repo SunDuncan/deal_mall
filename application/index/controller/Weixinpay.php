@@ -12,8 +12,6 @@ use wxpay\database\WxPayResults;
 class Weixinpay extends Controller{
     public function notify(){
         $weixinData = file_get_contents("php://input");
-        file_put_contents("/tmp/test/2.txt", $weixinData, FILE_APPEND);
-
         try {
             $resultObj = new WxPayResults();
             $weixinData = $resultObj->Init($weixinData);
@@ -37,12 +35,19 @@ class Weixinpay extends Controller{
             return $resultObj->toXml();
         }
 
+        //更新表 订单表 商品表
         try {
             $order_res = model('Order')->updateOrderByOutTradeNo($outTradeTo, $weixinData);
-
+            model('Deal')->updateBuyCountById($order->deal_id, $order->deal_count);
         }catch (\Exception $e){
-
+            $resultObj->setData('return_code', 'Error');
+            $resultObj->setData('return_msg', "OK");
+            return $resultObj->toXml();
         }
+
+        $resultObj->setData('return_code', 'SUCCESS');
+        $resultObj->setData('return_msg', "OK");
+        return $resultObj->toXml();
 
     }
 

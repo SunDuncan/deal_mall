@@ -120,4 +120,8 @@ class Deal extends Model{
         $res = $this->where('id', $data['id'])->update($data);
         return $res;
     }
+
+    public function updateBuyCountById($id, $buyCount) {
+        return $this->where(['id' => $id])->setInc('buy_count', $buyCount);
+    }
 }
