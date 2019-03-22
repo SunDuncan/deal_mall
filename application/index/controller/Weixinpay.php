@@ -12,13 +12,12 @@ use wxpay\database\WxPayResults;
 class Weixinpay extends Controller{
     public function notify(){
         $weixinData = file_get_contents("php://input");
-        file_put_contents("/tmp/test/2.txt", $weixinData, FILE_APPEND);
-
         try {
             $resultObj = new WxPayResults();
             $weixinData = $resultObj->Init($weixinData);
 
         }catch(\Exception $e) {
+            echo $e->getMessage();
             $resultObj->setData('return_code', 'FAIL');
             $resultObj->setData('return_msg', $e->getMessage());
             return $resultObj->toXml();
@@ -29,8 +28,8 @@ class Weixinpay extends Controller{
             return $resultObj->toXml();
         }
 
-        $outTradeTo = $weixinData['out_trade_to'];
-        $order = model('Order')->get(['out_trade_to' => $outTradeTo]);
+        $outTradeTo = $weixinData['out_trade_no'];
+        $order = model('Order')->get(['out_trade_no' => $outTradeTo]);
         if (!$order || $order->pay_status  == 1) {
             $resultObj->setData('return_code', 'SUCCESS');
             $resultObj->setData('return_msg', "OK");
