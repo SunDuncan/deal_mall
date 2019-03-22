@@ -55,7 +55,7 @@
         function get_pay_status() {
             var url = "{:url('api/order/paystatus')}";
             var pay_success_url = "{:url('pay/paysuccess')}";
-
+            var id = {$order.id}
             var postData = {
                 'id' : id
             }
@@ -65,7 +65,7 @@
                 }
             }, 'JSON');
         }
-        window.setInterval("get_pay_status", 2000);
+        window.setInterval("get_pay_status()", 2000);
     </script>
 </body>
 </html>
